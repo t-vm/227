@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dso3flqelih6a"]
+
+[ext_resource type="Script" path="res://character/CharacterBody2D.gd" id="1_8j2l6"]
+[ext_resource type="Texture2D" uid="uid://drfm5x2h65pdo" path="res://photo/1.png" id="2_rysep"]
+
+[sub_resource type="GDScript" id="GDScript_ox3ov"]
+script/source = "extends CollisionPolygon2D
+"
+
+[sub_resource type="GDScript" id="GDScript_smsk4"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(a):
+	if a:
+		visible = 1
+	else:
+		visible = 0
+"
+
+[sub_resource type="Animation" id="Animation_vohm0"]
+resource_name = "1"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbcoq"]
+_data = {
+"1": SubResource("Animation_vohm0")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk87w"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(54, 486)
+script = ExtResource("1_8j2l6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(350, -10)
+polygon = PackedVector2Array(57, -44, 53, 63, 87, 63, 81, -44)
+script = SubResource("GDScript_ox3ov")
+
+[node name="1" type="Sprite2D" parent="CollisionPolygon2D"]
+position = Vector2(64, 12)
+scale = Vector2(1.88636, 1.59589)
+texture = ExtResource("2_rysep")
+script = SubResource("GDScript_smsk4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fbcoq")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nk87w")
