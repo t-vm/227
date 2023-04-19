@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://dq6rkcdryx3yd"]
+
+[ext_resource type="PackedScene" uid="uid://4jstp1rgr1wn" path="res://root/node_2d.tscn" id="1_v3mti"]
+[ext_resource type="Shader" path="res://TEST/TEST.gdshader" id="2_srris"]
+[ext_resource type="PackedScene" uid="uid://t50c0s2kp6k7" path="res://Dialogbox/Dialogbox.tscn" id="3_gixad"]
+[ext_resource type="Texture2D" uid="uid://cfo12ptie7cpo" path="res://photo/1.png" id="4_mavdg"]
+[ext_resource type="Script" path="res://TEST/1.gd" id="5_u21ih"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u3ue5"]
+shader = ExtResource("2_srris")
+shader_parameter/ke_s = 3
+
+[sub_resource type="Animation" id="Animation_sg26s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(738, 128)]
+}
+
+[sub_resource type="Animation" id="Animation_wh63k"]
+resource_name = "test1_action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(738, 128), Vector2(753, 577)]
+}
+
+[sub_resource type="Animation" id="Animation_33u8u"]
+resource_name = "test2_action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(753, 577), Vector2(738, 128)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2hby"]
+_data = {
+"RESET": SubResource("Animation_sg26s"),
+"test1_action": SubResource("Animation_wh63k"),
+"test2_action": SubResource("Animation_33u8u")
+}
+
+[node name="TEST" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_v3mti")]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+material = SubResource("ShaderMaterial_u3ue5")
+offset_left = 4174.0
+offset_top = -2316.0
+offset_right = 6335.0
+offset_bottom = -970.0
+scale = Vector2(-1.48682, 1.51254)
+
+[node name="Dialogbox" parent="Node2D" instance=ExtResource("3_gixad")]
+process_mode = 3
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(738, 128)
+scale = Vector2(0.301483, 0.295297)
+texture = ExtResource("4_mavdg")
+script = ExtResource("5_u21ih")
+
+[node name="a1" type="AnimationPlayer" parent="1"]
+libraries = {
+"": SubResource("AnimationLibrary_k2hby")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 302.0
+offset_bottom = 199.0
