@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://inx50sgj6g5f"]
+
+[ext_resource type="Script" path="res://character/CharacterBody2D.gd" id="1_8j2l6"]
+[ext_resource type="Texture2D" uid="uid://cass24t8ja4rd" path="res://photo/j2.png" id="2_4640i"]
+[ext_resource type="Texture2D" uid="uid://sbca2t6b3ert" path="res://photo/j1.png" id="2_hx1mp"]
+[ext_resource type="Texture2D" uid="uid://drfm5x2h65pdo" path="res://photo/11.png" id="2_ld3ot"]
+[ext_resource type="Texture2D" uid="uid://df80w5ndx2o14" path="res://photo/1-.png" id="4_0mvkw"]
+[ext_resource type="Texture2D" uid="uid://tluqrho3db8r" path="res://photo/2-.png" id="4_4dmg5"]
+[ext_resource type="Texture2D" uid="uid://bi5iles2gi1dj" path="res://photo/3-.png" id="5_ejil2"]
+[ext_resource type="Texture2D" uid="uid://b6pf0y3fms6xl" path="res://photo/4.png" id="6_dbtqg"]
+[ext_resource type="Texture2D" uid="uid://deohc0a1m6y3v" path="res://photo/5-.png" id="7_0ta13"]
+[ext_resource type="Texture2D" uid="uid://cg6712i0rk0p6" path="res://photo/6-.png" id="8_6sivh"]
+
+[sub_resource type="GDScript" id="GDScript_ox3ov"]
+script/source = "extends CollisionPolygon2D
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk87w"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4640i")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hx1mp")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0mvkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4dmg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ejil2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dbtqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0ta13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6sivh")
+}],
+"loop": true,
+"name": &"move",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ld3ot")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+z_index = -1
+position = Vector2(65, 730)
+script = ExtResource("1_8j2l6")
+
+[node name="player_" type="CollisionPolygon2D" parent="."]
+position = Vector2(333, -26)
+scale = Vector2(1.5067, 1.28535)
+polygon = PackedVector2Array(57, -44, 53, 63, 87, 63, 80.992, -43.4141)
+script = SubResource("GDScript_ox3ov")
+
+[node name="action" type="AnimatedSprite2D" parent="player_"]
+position = Vector2(69, 12)
+scale = Vector2(1.43886, 1.45721)
+sprite_frames = SubResource("SpriteFrames_nk87w")
+animation = &"move"
