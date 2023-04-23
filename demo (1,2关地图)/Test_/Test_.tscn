@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnen6pcth4qm8"]
+
+[ext_resource type="Script" path="res://Test_/Test_.gd" id="1_cybqj"]
+
+[node name="Test" type="Node2D"]
+position = Vector2(30, 8)
+script = ExtResource("1_cybqj")
+
+[node name="test1" type="Area2D" parent="."]
+position = Vector2(-44, -128)
+
+[node name="test1_2d" type="CollisionPolygon2D" parent="test1"]
+position = Vector2(678, 874)
+polygon = PackedVector2Array(-32, 96, -8, 94, -10, -162, -30, -166)
+
+[node name="films1" type="Area2D" parent="."]
+position = Vector2(1597, 874)
+
+[node name="films_2d" type="CollisionPolygon2D" parent="films1"]
+position = Vector2(-568, -114)
+polygon = PackedVector2Array(15, -170, -5, -164, 1, 88, 21, 90)
+
+[connection signal="body_entered" from="test1" to="." method="test_enter" binds= ["test1", "stop", "f1"]]
+[connection signal="body_exited" from="test1" to="." method="test_exit" binds= ["test1"]]
+[connection signal="body_entered" from="films1" to="." method="films_enter" binds= ["films1", 6, "jump", "f2"]]
+[connection signal="body_exited" from="films1" to="." method="films_exit" binds= ["films1"]]

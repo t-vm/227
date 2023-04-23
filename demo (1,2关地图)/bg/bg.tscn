@@ -1,0 +1,165 @@
+[gd_scene load_steps=12 format=3 uid="uid://dailuhbkihkbs"]
+
+[ext_resource type="Texture2D" uid="uid://ccrwgwqlqdn02" path="res://photo/i.png" id="1_2w21i"]
+[ext_resource type="Texture2D" uid="uid://bhd2xpjeg3oa0" path="res://photo/i2.png" id="2_dpffq"]
+[ext_resource type="Texture2D" uid="uid://br1ap0w0hxba5" path="res://photo/i3.png" id="3_18w1c"]
+[ext_resource type="Texture2D" uid="uid://b7p73a0yf8qev" path="res://photo/电线杆-中.png" id="4_46768"]
+[ext_resource type="Texture2D" uid="uid://y6olf7xnwax4" path="res://photo/水泥路障.png" id="4_v8pta"]
+[ext_resource type="Texture2D" uid="uid://chi6l0r5r81m4" path="res://photo/电线中景-无牌.png" id="5_v34qo"]
+[ext_resource type="Texture2D" uid="uid://c7c65nf2i4vsy" path="res://photo/电线中景-有牌.png" id="7_s00nv"]
+[ext_resource type="Texture2D" uid="uid://e4k0pok0ckjp" path="res://photo/车站前.png" id="8_rj0fp"]
+[ext_resource type="Texture2D" uid="uid://ighh5856da37" path="res://photo/车站完整.png" id="9_457bv"]
+[ext_resource type="PackedScene" uid="uid://cb4fumqnkply3" path="res://parallax_layer.tscn" id="10_8570p"]
+[ext_resource type="PackedScene" uid="uid://ukpsluqftv3f" path="res://parallax_layer_2.tscn" id="11_nksac"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+layer = -2
+metadata/_edit_vertical_guides_ = [1728.0, 5864.0]
+metadata/_edit_horizontal_guides_ = [960.0]
+
+[node name="ParallaxLayer0" type="ParallaxLayer" parent="."]
+z_index = -4
+motion_scale = Vector2(0.5, 1)
+
+[node name="I" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(863.99, 480)
+scale = Vector2(5.40006, 5.33333)
+texture = ExtResource("1_2w21i")
+
+[node name="I2" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(2631.23, 480)
+scale = Vector2(5.64979, 5.33333)
+texture = ExtResource("2_dpffq")
+
+[node name="I3" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(4384, 480)
+scale = Vector2(5.33333, 5.33333)
+texture = ExtResource("3_18w1c")
+
+[node name="I4" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(6088, 480)
+scale = Vector2(5.33333, 5.33333)
+texture = ExtResource("3_18w1c")
+
+[node name="车站前" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(5048, 704)
+scale = Vector2(5, 5)
+texture = ExtResource("8_rj0fp")
+
+[node name="车站完整" type="Sprite2D" parent="ParallaxLayer0"]
+position = Vector2(6136, 664)
+scale = Vector2(5, 5)
+texture = ExtResource("9_457bv")
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
+z_index = -3
+motion_scale = Vector2(0.7, 1)
+
+[node name="水泥路障" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(703.5, 862.5)
+scale = Vector2(5, 5)
+texture = ExtResource("4_v8pta")
+
+[node name="电线中景-无牌" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(821, 656)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线杆-中2" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(1104, 760)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(536, 761)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中3" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(1656, 760)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中4" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(2208, 760)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线中景-无牌2" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(256, 664)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线中景-有牌" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(1376, 672)
+scale = Vector2(5, 5)
+texture = ExtResource("7_s00nv")
+
+[node name="电线中景-无牌3" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(1928, 656)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="水泥路障2" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(2941, 863.5)
+scale = Vector2(5, 5)
+texture = ExtResource("4_v8pta")
+
+[node name="电线中景-无牌4" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(3058.5, 657)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线杆-中5" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(3341.5, 761)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中6" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(2773.5, 762)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中7" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(3893.5, 761)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线杆-中8" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(4445.5, 761)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线中景-无牌5" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(2493.5, 665)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线中景-有牌2" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(3613.5, 673)
+scale = Vector2(5, 5)
+texture = ExtResource("7_s00nv")
+
+[node name="电线中景-无牌6" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(4165.5, 657)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线中景-无牌7" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(5290.5, 656)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="电线杆-中10" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(5005.5, 761)
+scale = Vector2(5, 5)
+texture = ExtResource("4_46768")
+
+[node name="电线中景-无牌8" type="Sprite2D" parent="ParallaxLayer1"]
+position = Vector2(4725.5, 664)
+scale = Vector2(5, 5)
+texture = ExtResource("5_v34qo")
+
+[node name="ParallaxLayer" parent="." instance=ExtResource("10_8570p")]
+
+[node name="ParallaxLayer2" parent="." instance=ExtResource("11_nksac")]
