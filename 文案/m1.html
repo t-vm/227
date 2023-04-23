@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>m1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="v1">v1</h2>
+<h5 id="%E5%BC%80%E5%A4%B4cg">开头cg：</h5>
+<p>如果你可以听到--
+打起精神，死亡不是一切的终点。
+在梦中的世界沿着向前延伸的路走下去，崭新的世界在等待着你。
+幸福
+快乐
+共感
+认同
+也许你可以拥有你想要的一切</p>
+<h3 id="m1">m1</h3>
+<h5 id="%E7%AC%AC%E4%B8%80%E6%AE%B5">第一段</h5>
+<p>我：...
+我： ...这是什么情况
+我： 像是在做梦
+我：...
+我：（猛掐自己的右手腕）
+我： 这最好真的是个梦。
+这是哪里？
+在我的印象里，上一刻的我应该还在睡梦中，但此时此刻我已经站在这儿了。
+这样一个凝固的阴天里却总是吹来带着凉意的风。
+四周空旷无际，凝固的阴天里吹来带着凉意的风。身边只有柏油路和电线杆，旁边似乎是一个巨大的湖。这一切给我一种怪诞而不适的感觉，仿佛是置身于某个意气风发的年轻导演拍摄的试验性电影里。
+我： ？
+不知为何，我的胸前挂着一台照相机。这机器并不属于我，我从未见过它。但直觉告诉我，我应该把它留下来。</p>
+<h5 id="%E7%AC%AC%E4%BA%8C%E6%AE%B5">第二段</h5>
+<p>想是被蜜蜂蛰了一下，我突然想到了我站在这里，眼前呈现出这样一副景象之前，有过这样一小段微妙的感受。
+一个令人舒适的、知性的声音，用诗性的句子告诉我：</p>
+<p><em>如果你可以听到--
+打起精神，死亡不是一切的终点。
+在梦中的世界沿着向前延伸的路走下去，崭新的世界在等待着你。
+幸福
+快乐
+共感
+认同
+也许你可以拥有你想要的一切</em></p>
+<p>我努力回想起那短短数十秒--也可能只有十余秒：
+那时我同样不知身处何处，但与现在不同的是，我似乎被一种温暖的感觉包围、缠绕，处于一种令人生疑却又不想离开的暧昧氛围中。
+“她”说，死亡不是终点。
+这是多么温柔的嗓音，又是多么令人在意的话语啊。以至于“死亡”这般令人生畏的词语都融化在其中了。
+我： 我没有醉酒，更没有滥用药物。
+说不定如“她”所说，我真的死了，而这一切都是我死去的一瞬那盏巨大的走马灯。
+我： 一切都很令人在意...
+我： 姑且走下去看看吧。</p>
+<h5 id="%E7%AC%AC%E4%B8%89%E6%AE%B5">第三段</h5>
+<p>车站的牌子掉下来了一个。<br>
+这个车站大概已经废弃了。这样一个风景优美的湖滨小车站，在它还在运营的时候--如果真的有过，曾让多少画家为它作画，又让多少经过的旅客心头产生过作诗的想法？
+这时，我突然想起那来历不明的照相机来。这般景象与好奇心让我不禁举起它把镜头对准那里，按下快门。
+没有反应--胶卷仓空着。
+我： …这样吗。
+我：干脆进去看看。</p>
+<h5 id="%E7%AC%AC%E5%9B%9B%E6%AE%B5">第四段</h5>
+<p>我：怎么还亮着灯？
+空无一人的地方却维持着电力供应，这让我心生恐惧。不过也许我身处此地这件事本身就是一件令人恐惧的事情。</p>
+<h5 id="%E7%AC%AC%E4%BA%94%E6%AE%B5%E4%B8%8A%E8%BD%A6">第五段（上车）</h5>
+<blockquote>
+<p>演出：主角站在站台上，车驶来，车驶走，主角消失</p>
+</blockquote>
+<p>我： ？！
+我： ……
+我几乎在一瞬间作出了上车的决定。我在打开的车门前再次感到了那种奇妙的暧昧感觉，这辆列车正吸引着我。此刻的我像是一只漫无目的飞行的昆虫，这辆车像于我便是猪笼草，神秘、甜美而危险。</p>
+<h5 id="%E7%AC%AC%E5%85%AD%E6%AE%B5">第六段</h5>
+<p>我在空无一人的车厢里大声询问。
+我： 是谁？
+我： 有谁在那里吗？
+一切像是被安排好一样，没有人回答。
+问题的无解让我冷静下来。姑且在车上寻找线索吧。</p>
+<h5 id="%E5%92%8C%E9%80%94%E5%BE%84%E7%AB%99%E6%A0%87%E8%AF%86%E6%9D%BF%E4%BA%92%E5%8A%A8">（和途径站标识板互动）</h5>
+<p>途经的车站名被抹去了。
+我： 现在可以确定的是，这里是现实世界的可能性几乎为零。
+我： 但这车上真是一个人也没有啊。甚至连通体漆黑的戴白色面具的人也没有。</p>
+<h5 id="%E4%B8%8E%E6%B5%B7%E6%8A%A51%E4%BA%92%E5%8A%A8">（与海报1互动）</h5>
+<p>版本一： 车里的海报充满着年代感。曾经这样的的广告海报遍布大街小巷，刺激着人们的购买欲，让空气中充斥着甜腻味儿。海报中“优质生活”的模样被渲染得闪闪发光，使人们被驱使着从自己本就不丰盈的荷包里掏出相当一部分，模仿着勾勒出一个轮廓来。
+版本二： 车里的海报充满着年代感。曾经这样的的广告海报遍布大街小巷，刺激着人们的购买欲，让空气中充斥着甜腻味儿<em>的粉红色泡泡</em>。海报中“优质生活”的模样被渲染得闪闪发光，使人们被驱使着从自己本就不丰盈的荷包里掏出相当一部分，模仿着勾勒出一个轮廓来。</p>
+<p>我： 海报里的这个人是谁呢？
+我： 也许我的父母一辈人人都认识她吧。</p>
+<h5 id="%E4%B8%8E%E6%B5%B7%E6%8A%A52%E4%BA%92%E5%8A%A8">（与海报2互动）</h5>
+<p>是电视机的广告。海报里电视机那被显像管撑起的硕大身躯放射出一条条橙黄色的线，给右下角被重重描边的打折数字提供了背景板。时至今日，液晶时代的人们中又有人开始追求crt了。</p>
+<h5 id="%E7%AC%AC%E4%B8%83%E6%AE%B5">第七段</h5>
+<p>车厢的广播： 欢迎来到瑕疵相片的世界。错误的快门时间、错误的成像时机、模糊和拖影…您拍出过瑕疵相片吗？
+车厢的广播： 在另一侧的现实中死亡的人们，都会来到这里。表面上出现问题的相片，也许会成为改变一切的契机。
+车厢的广播： 您每次按下快门，那一刻印在菲林上的内容都将更新这个世界，铺下通向美丽的、崭新的世界之路的一块基石。
+车厢的广播： 列车即将到站，请您务必通过改写这个世界的样貌，到达光芒的彼岸。</p>
+
+</body>
+</html>
