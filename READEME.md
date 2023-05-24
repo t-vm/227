@@ -1,0 +1,1 @@
+you can learn the word you don't mastered yet before reading.
