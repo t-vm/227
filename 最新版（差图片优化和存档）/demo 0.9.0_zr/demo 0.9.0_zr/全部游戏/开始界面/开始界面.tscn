@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://mqcl6r22upuk"]
+
+[ext_resource type="Texture2D" uid="uid://beokxc0sksyq5" path="res://photo/车站完整.png" id="1_srjbc"]
+[ext_resource type="Script" path="res://全部游戏/开始界面/TextureRect.gd" id="2_8ufgj"]
+
+[node name="开始界面" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1728.0
+offset_bottom = 972.0
+size_flags_vertical = 2
+texture = ExtResource("1_srjbc")
+expand_mode = 1
+script = ExtResource("2_8ufgj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 591.0
+offset_top = 542.0
+offset_right = 1367.0
+offset_bottom = 881.0
+theme_override_constants/separation = 200
+
+[node name="begin" type="Button" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="exit" type="Button" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+
+[connection signal="pressed" from="TextureRect/HBoxContainer/begin" to="TextureRect" method="gamestart"]
+[connection signal="pressed" from="TextureRect/HBoxContainer/exit" to="TextureRect" method="gameover"]
