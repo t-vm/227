@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5u3clx83jgnj"]
+
+[ext_resource type="Script" path="res://对话框2/Test_1.gd" id="1_hf2mp"]
+
+[node name="Test" type="Node2D"]
+position = Vector2(30, 8)
+script = ExtResource("1_hf2mp")
+metadata/_edit_vertical_guides_ = [8676.0]
+metadata/_edit_horizontal_guides_ = [891.0]

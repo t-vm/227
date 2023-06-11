@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b6pf0y3fms6xl" path="res://photo/Photo_layer 1/4.png" id="9_mohv8"]
+[ext_resource type="Script" path="res://对话框/a.gd" id="10_7wcdv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp4p0"]
+
+[node name="TEST" type="Node2D"]
+
+[node name="player_" type="CharacterBody2D" parent="."]
+position = Vector2(-778, 1217)
+script = ExtResource("10_7wcdv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player_"]
+position = Vector2(1506, -784)
+polygon = PackedVector2Array(-1, -8, -8, 1, -1, 8, 9, -1)
+
+[node name="4" type="Sprite2D" parent="player_/CollisionPolygon2D"]
+position = Vector2(-1, 1)
+texture = ExtResource("9_mohv8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(587, 311)
+scale = Vector2(3.42763, 3.42763)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wp4p0")
