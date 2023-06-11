@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkt3x4jc0y3sf"]
+
+[ext_resource type="Texture2D" uid="uid://jahfmtc5x0ec" path="res://photo/标题/背景611.png" id="1_1n3py"]
+[ext_resource type="Texture2D" uid="uid://cwppedt732wly" path="res://photo/标题/图层 1 拷贝.png" id="1_obclq"]
+[ext_resource type="Script" path="res://全部游戏/开始界面/TextureRect.gd" id="2_67w5i"]
+[ext_resource type="Texture2D" uid="uid://dus0jjgdo76ax" path="res://photo/标题/图层 22.png" id="3_1l41s"]
+[ext_resource type="Texture2D" uid="uid://28xsd0v3cs3f" path="res://photo/标题/图层 4 拷贝.png" id="4_esjv2"]
+
+[node name="开始界面" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1728.0
+offset_bottom = 972.0
+size_flags_vertical = 2
+texture = ExtResource("1_1n3py")
+expand_mode = 1
+script = ExtResource("2_67w5i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1193.0
+offset_top = 345.0
+offset_right = 1401.0
+offset_bottom = 455.0
+theme_override_constants/separation = 50
+
+[node name="begin" type="Button" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 50
+text = "开始游戏"
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1236.0
+offset_top = 531.0
+offset_right = 1444.0
+offset_bottom = 631.0
+
+[node name="du_qu_cun_dang" type="Button" parent="TextureRect/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_font_sizes/font_size = 50
+text = "读取存档"
+flat = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1195.0
+offset_top = 714.0
+offset_right = 1403.0
+offset_bottom = 814.0
+
+[node name="exit" type="Button" parent="TextureRect/VBoxContainer3"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_font_sizes/font_size = 50
+text = "退出游戏"
+flat = true
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(700, 700)
+offset_left = 204.0
+offset_top = 86.0
+offset_right = 904.0
+offset_bottom = 786.0
+texture = ExtResource("1_obclq")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 256.0
+offset_top = 31.0
+offset_right = 1114.13
+offset_bottom = 766.625
+texture = ExtResource("3_1l41s")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 580.0
+offset_top = 258.0
+offset_right = 1230.0
+offset_bottom = 908.0
+texture = ExtResource("4_esjv2")
+expand_mode = 1
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/begin" to="TextureRect" method="gamestart"]
+[connection signal="button_down" from="TextureRect/VBoxContainer2/du_qu_cun_dang" to="TextureRect" method="_on_du_qu_cun_dang_button_down"]
+[connection signal="pressed" from="TextureRect/VBoxContainer3/exit" to="TextureRect" method="gameover"]

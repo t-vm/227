@@ -1,3 +1,0 @@
-# 227
-      
-      art resources
