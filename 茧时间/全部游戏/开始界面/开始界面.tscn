@@ -1,0 +1,181 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkt3x4jc0y3sf"]
+
+[ext_resource type="Texture2D" uid="uid://jahfmtc5x0ec" path="res://photo/标题/背景611.png" id="1_1n3py"]
+[ext_resource type="Texture2D" uid="uid://cwppedt732wly" path="res://photo/标题/图层 1 拷贝.png" id="1_obclq"]
+[ext_resource type="Script" path="res://全部游戏/开始界面/TextureRect.gd" id="2_67w5i"]
+[ext_resource type="Texture2D" uid="uid://dus0jjgdo76ax" path="res://photo/标题/图层 22.png" id="3_1l41s"]
+[ext_resource type="Texture2D" uid="uid://28xsd0v3cs3f" path="res://photo/标题/图层 4 拷贝.png" id="4_esjv2"]
+[ext_resource type="Texture2D" uid="uid://ddqc0rqqpuria" path="res://photo/标题/TIME.png" id="6_0v3kk"]
+
+[sub_resource type="Shader" id="Shader_7prxf"]
+code = "shader_type canvas_item;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+
+vec2 curve(vec2 uv)
+{
+uv = (uv - 0.5) * 2.0;
+uv *= 1.1; 
+uv.x *= 1.0 + pow((abs(uv.y) / 8.0), 2.0);
+uv.y *= 1.0 + pow((abs(uv.x) / 6.0), 2.0);
+uv  = (uv / 2.0) + 0.5;
+uv =  uv *0.92 + 0.04;
+return uv;
+}
+//产生曲面效果的画面畸变
+
+void fragment(  )
+{
+vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
+    vec2 q = FRAGCOORD.xy / iResolution.xy;
+    vec2 uv = q;
+    uv = curve( uv );
+	// 纹理坐标变换
+    vec3 oricol = texture( screen_texture, vec2(q.x,q.y) ).xyz;
+    vec3 col;
+	//获取屏幕分辨率
+float x =  sin(0.3*TIME+uv.y*21.0)*sin(0.7*TIME+uv.y*29.0)*sin(0.3+0.33*TIME+uv.y*31.0)*0.0017;
+	//从屏幕纹理中采样颜色
+	
+    col.r = texture(screen_texture,vec2(x+uv.x+0.001,uv.y+0.001)).x+0.05;
+    col.g = texture(screen_texture,vec2(x+uv.x+0.000,uv.y-0.002)).y+0.05;
+    col.b = texture(screen_texture,vec2(x+uv.x-0.002,uv.y+0.000)).z+0.05;
+    col.r += 0.08*texture(screen_texture,0.75*vec2(x+0.025, -0.027)+vec2(uv.x+0.001,uv.y+0.001)).x;
+    col.g += 0.05*texture(screen_texture,0.75*vec2(x+-0.022, -0.02)+vec2(uv.x+0.000,uv.y-0.002)).y;
+    col.b += 0.08*texture(screen_texture,0.75*vec2(x+-0.02, -0.018)+vec2(uv.x-0.002,uv.y+0.000)).z;
+
+    col = clamp(col*0.6+0.4*col*col*1.0,0.0,1.0);
+
+    float vig = (0.0 + 1.0*16.0*uv.x*uv.y*(1.0-uv.x)*(1.0-uv.y));
+	//并计算纹理坐标rgb值
+	
+col *= vec3(pow(vig,0.3));
+
+    col *= vec3(0.95,1.05,0.95);
+col *= 2.8;
+
+float scans = clamp( 0.35+0.35*sin(3.5*TIME+uv.y*iResolution.y*1.5), 0.0, 1.0);
+
+float s = pow(scans,1.7);
+col = col*vec3( 0.4+0.7*s) ;
+
+    col *= 1.0+0.01*sin(110.0*TIME);
+if (uv.x < 0.0 || uv.x > 1.0)
+col *= 0.0;
+if (uv.y < 0.0 || uv.y > 1.0)
+col *= 0.0;
+
+col*=1.0-0.65*vec3(clamp((mod(FRAGCOORD.x, 2.0)-1.0)*2.0,0.0,1.0));
+
+    float comp = smoothstep( 0.1, 0.9, sin(TIME) );
+ 
+
+    COLOR = vec4(col,1.0);
+	//计算纹理坐标
+} "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_co6ya"]
+shader = SubResource("Shader_7prxf")
+
+[node name="开始界面" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_co6ya")
+offset_right = 1728.0
+offset_bottom = 975.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1728.0
+offset_bottom = 972.0
+size_flags_vertical = 2
+texture = ExtResource("1_1n3py")
+expand_mode = 1
+script = ExtResource("2_67w5i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1193.0
+offset_top = 345.0
+offset_right = 1401.0
+offset_bottom = 455.0
+theme_override_constants/separation = 50
+
+[node name="begin" type="Button" parent="TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 50
+text = "开始游戏"
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1236.0
+offset_top = 531.0
+offset_right = 1444.0
+offset_bottom = 631.0
+
+[node name="du_qu_cun_dang" type="Button" parent="TextureRect/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_font_sizes/font_size = 50
+text = "读取存档"
+flat = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = 1195.0
+offset_top = 714.0
+offset_right = 1403.0
+offset_bottom = 814.0
+
+[node name="exit" type="Button" parent="TextureRect/VBoxContainer3"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.403922, 0.533333, 0.568627, 1)
+theme_override_font_sizes/font_size = 50
+text = "退出游戏"
+flat = true
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(700, 700)
+offset_left = 204.0
+offset_top = 86.0
+offset_right = 904.0
+offset_bottom = 786.0
+texture = ExtResource("1_obclq")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 256.0
+offset_top = 31.0
+offset_right = 1114.13
+offset_bottom = 766.625
+texture = ExtResource("3_1l41s")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 580.0
+offset_top = 258.0
+offset_right = 1230.0
+offset_bottom = 908.0
+texture = ExtResource("4_esjv2")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+offset_left = 211.0
+offset_top = 99.0
+offset_right = 1225.0
+offset_bottom = 252.4
+texture = ExtResource("6_0v3kk")
+expand_mode = 1
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/begin" to="TextureRect" method="gamestart"]
+[connection signal="button_down" from="TextureRect/VBoxContainer2/du_qu_cun_dang" to="TextureRect" method="_on_du_qu_cun_dang_button_down"]
+[connection signal="pressed" from="TextureRect/VBoxContainer3/exit" to="TextureRect" method="gameover"]
