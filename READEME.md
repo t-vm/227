@@ -1,1 +1,3 @@
-you can learn the word you don't mastered yet before reading.
+# Article Word Translator
+
+## background

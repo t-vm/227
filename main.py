@@ -1,30 +1,56 @@
 import tkinter as tk
-from tkinter import filedialog
+import basic
 
-def open_file():
-    file_path = filedialog.askopenfilename()
-    with open(file_path, 'r', encoding='utf-8') as file:
-        return file.read()
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
 
-def display_file_content(file_content):
-    text.delete('1.0', tk.END)
-    text.insert(tk.END, file_content)
+    def create_widgets(self):
+        
+        self.top_frame = tk.Frame(self)
+        self.top_frame.pack()
+        
+        self.bottom_frame = tk.Frame(self)
+        self.bottom_frame.pack()
+        
+        self.left_frame = tk.Frame(self.top_frame)
+        self.left_frame.pack(side=tk.LEFT)
 
-def get_file_words(file_content):
-    pass
+        self.right_frame = tk.Frame(self.top_frame)
+        self.right_frame.pack(side=tk.RIGHT)
+        
+        self.passage_text = tk.Text(self.left_frame, height=50, width=150)
+        self.passage_text.pack()
+
+        self.word_text = tk.Text(self.right_frame, height=50, width=50)
+        self.word_text.pack()
+        
+        self.open_button = tk.Button(self.bottom_frame)
+        self.open_button["text"] = "打开文件"
+        self.open_button["command"] = lambda: basic.open_file(self.passage_text)
+        self.open_button.pack(side=tk.LEFT)
+
+        self.save_button = tk.Button(self.bottom_frame)
+        self.save_button["text"] = "翻译"
+        self.save_button["command"] = basic.translate()
+        self.save_button.pack(side=tk.LEFT)
+        
+        self.master_button = tk.Button(self.bottom_frame)
+        self.master_button["text"] = "未掌握单词本"
+        self.master_button["command"] = basic.not_master_vocabulary_book()
+        self.master_button.pack(side=tk.LEFT)
+        
+        self.not_master_button = tk.Button(self.bottom_frame)
+        self.not_master_button["text"] = "已掌握单词本"
+        self.not_master_button["command"] = basic.master_vocabulary_book()
+        self.not_master_button.pack(side=tk.LEFT)
+
+        self.quit_button = tk.Button(self.bottom_frame, text="退出", command=self.master.destroy)
+        self.quit_button.pack(side=tk.LEFT)
 
 root = tk.Tk()
-
-frame = tk.Frame(root)
-frame.pack(side=tk.BOTTOM)
-
-button = tk.Button(frame, text='打开文件', command=lambda: display_file_content(open_file()))
-button.pack(side=tk.LEFT)
-
-words_button = tk.Button(frame, text='生词翻译', command=lambda: get_file_words(text.get('1.0', tk.END)))
-words_button.pack(side=tk.LEFT)
-
-text = tk.Text(root)
-text.pack()
-
-root.mainloop()
+app = Application(master=root)
+app.mainloop()
