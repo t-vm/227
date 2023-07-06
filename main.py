@@ -33,20 +33,25 @@ class Application(tk.Frame):
         self.open_button["command"] = lambda: basic.open_file(self.passage_text)
         self.open_button.pack(side=tk.LEFT)
 
-        self.save_button = tk.Button(self.bottom_frame)
-        self.save_button["text"] = "翻译"
-        self.save_button["command"] = basic.translate()
-        self.save_button.pack(side=tk.LEFT)
+        self.trans_button = tk.Button(self.bottom_frame)
+        self.trans_button["text"] = "翻译"
+        self.trans_button["command"] = basic.translate()
+        self.trans_button.pack(side=tk.LEFT)
         
         self.master_button = tk.Button(self.bottom_frame)
         self.master_button["text"] = "未掌握单词本"
-        self.master_button["command"] = basic.not_master_vocabulary_book()
+        self.master_button["command"] = lambda: basic.not_master_vocabulary_book(self.word_text)
         self.master_button.pack(side=tk.LEFT)
         
         self.not_master_button = tk.Button(self.bottom_frame)
         self.not_master_button["text"] = "已掌握单词本"
-        self.not_master_button["command"] = basic.master_vocabulary_book()
+        self.not_master_button["command"] = lambda: basic.master_vocabulary_book(self.word_text)
         self.not_master_button.pack(side=tk.LEFT)
+
+        self.save_button = tk.Button(self.bottom_frame)
+        self.save_button['text'] = '保存修改'
+        self.save_button['command'] = lambda: basic.save_file(self.word_text)
+        self.save_button.pack(side=tk.RIGHT)
 
         self.quit_button = tk.Button(self.bottom_frame, text="退出", command=self.master.destroy)
         self.quit_button.pack(side=tk.LEFT)
