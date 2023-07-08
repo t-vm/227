@@ -38,15 +38,15 @@ class Application(tk.Frame):
         self.trans_button["command"] = basic.translate()
         self.trans_button.pack(side=tk.LEFT)
         
-        self.master_button = tk.Button(self.bottom_frame)
-        self.master_button["text"] = "未掌握单词本"
-        self.master_button["command"] = lambda: basic.not_master_vocabulary_book(self.word_text)
-        self.master_button.pack(side=tk.LEFT)
-        
         self.not_master_button = tk.Button(self.bottom_frame)
-        self.not_master_button["text"] = "已掌握单词本"
-        self.not_master_button["command"] = lambda: basic.master_vocabulary_book(self.word_text)
+        self.not_master_button["text"] = "未掌握单词本"
+        self.not_master_button["command"] = lambda: basic.not_master_vocabulary_book(self.word_text)
         self.not_master_button.pack(side=tk.LEFT)
+        
+        self.master_button = tk.Button(self.bottom_frame)
+        self.master_button["text"] = "已掌握单词本"
+        self.master_button["command"] = lambda: basic.master_vocabulary_book(self.word_text)
+        self.master_button.pack(side=tk.LEFT)
 
         self.save_button = tk.Button(self.bottom_frame)
         self.save_button['text'] = '保存修改'

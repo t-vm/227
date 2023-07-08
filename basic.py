@@ -1,5 +1,12 @@
+import re
 import tkinter as tk
 from tkinter import filedialog
+            
+def get_set(file_path):            
+    with open(file_path, 'r') as f:
+        content = f.read()
+        words = re.findall(r'\b\w+\b', content.lower())
+        return set(words)
 
 def open_file(text):
     file_path = filedialog.askopenfilename()
@@ -19,7 +26,7 @@ def master_vocabulary_book(text):
         text.insert(tk.END, f.read())
 
 def not_master_vocabulary_book(text):
-    global  file_path
+    global file_path
     file_path = 'not_master_word.txt'
     with open(file_path, 'r') as f:
         text.delete('1.0', tk.END)
